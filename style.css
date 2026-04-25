@@ -1,44 +1,74 @@
+/*  */
+/* STYLES body     */
+/*  */
+
 body {
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    height: 100vh;
-    align-items: center;
-    background-color: beige;
+    margin: 0;                           /* Supprime les marges par défaut du navigateur */
+    display: flex;                       /* Active Flexbox pour centrer le contenu */
+    justify-content: center;             /* Centre horizontalement */
+    height: 100vh;                       /* Prend toute la hauteur de la fenêtre */
+    align-items: center;                 /* Centre verticalement */
+    background-color: beige;             /* Couleur de fond de la page */
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
+
+
+/*  */
+/* LE BOUTON PRINCIPAL  */
+/*  */
+
 .btn {
-    background-color: pink;
-    padding: 20px 40px;
-    border-radius: 15px;
-    box-shadow: 1px 4px 6px rgba(0, 0, 0, .3);
-    color: darkslateblue;
-    font-weight: bold;
-    text-decoration: none;
-    position : relative;
-    overflow: hidden;
+    background-color: pink;              /* Couleur de fond initiale */
+    padding: 20px 40px;                  /* Espace intérieur : 20px haut/bas, 40px gauche/droite */
+    border-radius: 15px;                 /* Coins arrondis */
+    box-shadow: 1px 4px 6px rgba(0, 0, 0, .3);  /* Ombre légère */
+    color: darkslateblue;                /* Couleur du texte */
+    font-weight: bold;                   /* Texte en gras */
+    text-decoration: none;               /* Enlève le soulignement (pour les liens) */
+    position: relative;                  /* Nécessaire pour que ::before se positionne PAR RAPPORT au bouton */
+    overflow: hidden;                    /* Cache le cercle qui dépasse du bouton pendant l'animation */
 }
+
+
+/*  */
+/* TEXTE DU BOUTON      */
+/*  */
 
 .btn span {
-    position: relative;
-    z-index: 1;
+    position: relative;                  /* Permet au texte d'être AU-DESSUS du pseudo-élément ::before */
+    z-index: 1;                          /* Assure que le texte reste visible (passe devant le cercle) */
 }
+
+
+/*  */
+/* EFFET DE SURVOL (CERCLE COLORÉ) */
+/*  */
 
 .btn::before {
-    content: "";
-    background-color: rgb(86, 244, 250);
-    position: absolute;
-    width: 0px;
-    height: 0px;
-    top: var(--yPos);
-    left: var(--xPos);
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    transition: width 0.5s, height 0.5s;
+    content: "";                         /* Nécessaire pour qu'un pseudo-élément apparaisse */
+    background-color: rgb(86, 244, 250); /* Couleur cyan du cercle */
+    position: absolute;                  /* Positionné par rapport au bouton (parent en relative) */
+    width: 0px;                          /* Départ : taille 0 (invisible) */
+    height: 0px;                         /* Départ : taille 0 (invisible) */
+    
+    /* Positionnement dynamique avec les variables JavaScript */
+    /* --yPos = position Y de la souris, --xPos = position X de la souris */
+    top: var(--yPos);                    /* Bord haut du cercle = Y souris */
+    left: var(--xPos);                   /* Bord gauche du cercle = X souris */
+    
+    transform: translate(-50%, -50%);    /* Décale le cercle pour que son CENTRE soit à la souris */
+    border-radius: 50%;                  /* Forme parfaitement ronde */
+    
+    /* Transition fluide quand la taille change */
+    transition: width 0.5s, height 0.5s; /* Durée : 0.5 seconde pour largeur ET hauteur */
 }
 
 
+/*  */
+/* ANIMATION AU SURVOL  */
+/*  */
+
 .btn:hover::before {
-    width: 400px;
-    height: 400px;
+    width: 400px;                        /* Grand cercle qui apparaît au survol */
+    height: 400px;                       /* Même taille pour garder la forme ronde */
 }
