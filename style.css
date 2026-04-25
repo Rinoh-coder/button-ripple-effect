@@ -30,8 +30,8 @@ body {
     position: absolute;
     width: 0px;
     height: 0px;
-    top: 50%;
-    left: 50%;
+    top: var(--yPos);
+    left: var(--xPos);
     transform: translate(-50%, -50%);
     border-radius: 50%;
     transition: width 0.5s, height 0.5s;
@@ -39,6 +39,6 @@ body {
 
 
 .btn:hover::before {
-    width: 200px;
-    height: 200px;
+    width: 400px;
+    height: 400px;
 }
